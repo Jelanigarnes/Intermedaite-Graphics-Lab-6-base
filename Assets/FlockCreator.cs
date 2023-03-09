@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 using System;
+using System.IO;
 public class FlockCreator : MonoBehaviour
 {
 
     public int numAgents = 100;
     public int spawnRadius = 20;
     public GameObject agent;
-
+    public Material perlinMaterial;
     public float speed = 1.0f;
 
     private Vector3[] sightRays;
@@ -48,8 +49,8 @@ public class FlockCreator : MonoBehaviour
 
         kernelHandle = computeShader.FindKernel("CSMain");
 
+       
 
-        
     }
     //Think of thses as the uniform variables in OpenGL.
     private void setUniforms(){
@@ -58,7 +59,10 @@ public class FlockCreator : MonoBehaviour
 
     //Send the Flock's positions and velocities to the GPU
     private void setBuffer(){
-
+        ////Added ************************************************************
+        //computeShader.SetBuffer(kernelHandle, "posBuffer", posBuffer);
+        //computeShader.SetBuffer(kernelHandle, "velBuffer", velBuffer);
+        //computeShader.SetBuffer(kernelHandle, "resultBuffer", resultBuffer);
     } 
     void runShader(){
 
